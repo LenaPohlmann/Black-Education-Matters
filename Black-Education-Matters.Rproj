@@ -47,9 +47,7 @@ logo_raw
 ```
 
 
-#### Dataset
 
-The data set was provided via TidyTuesday and contains data describing diversity, costs, and so on in schools, colleges and universities in the USA. 
 
 # Diversity in colleges and schools
 
@@ -66,7 +64,7 @@ diversity_college%>%
   aes(x = enrollment) +
   aes(fill = state) +
   geom_col() +
-  labs(x="Amount of students",y="", title= "Diversity in colleges and universities in the US states") +
+  labs(x="Amount of students",y="", title= "Diversity in colleges and universities in \nthe US states") +
   theme(axis.text.y = element_text(angle = 90, vjust = 0.5, hjust=1))+
   guides(fill=guide_legend(title=NULL))+
   theme_minimal(base_size = 8) +
@@ -93,9 +91,8 @@ diversity_school %>%
   geom_bar() + 
  
   facet_wrap(SCHOOL_YEAR ~ .) + 
-  labs(title= "Diversity in schools") + 
+  labs(y="Amount of schools",title= "Diversity in schools") + 
   theme(axis.title.x=element_blank()) + 
-  theme(axis.title.y=element_blank())+
   theme(legend.title=element_blank())+
   theme(axis.ticks.x=element_blank())+
   theme(axis.text.x = element_blank())+
@@ -111,7 +108,12 @@ But what is the origin of these differences in diversity in schools and higher e
 # Collegecosts in America
 
 In America it is common for students to have to pay large amounts of money to attend college or university. This applies not only to private institutions, but also to public ones. The following two diagrams show the total costs for colleges and universities, divided into public and private in the different states of the USA. The first diagram shows the costs for a 2-year study, the second diagram shows the costs for a 4-year study. 
-You can also see how much the cost of studying varies within the different states and where the average cost lies.  
+You can also see how much the cost of studying varies within and between the different states and where the average cost lies.  
+
+Within a two-year study at a public institution, with one exception, the study costs are less than 20,000USD. The situation is somewhat different for private institutions - here the costs can reach almost 70,000USD.
+
+In the second diagram, clear fluctuations can also be seen within states. Although the average value is usually still below 20,000USD, there are many outliers that cost at least twice as much as the mean.
+
 
 
 ```{r setup4, echo=FALSE, cache=FALSE}
@@ -122,7 +124,7 @@ You can also see how much the cost of studying varies within the different state
 tuition_cost%>%
     filter(str_detect(degree_length, "2 Year"), type != "For Profit")%>%
  ggplot()+aes(x=state_code,y=in_state_total,fill=type) + geom_col(position="identity")+
-  labs(x="State", y="Costs", title= "Study fees in different US states for a 2-year study")+
+  labs(x="State", y="Costs in USD", title= "Study fees in different US states for a 2-year study")+
    scale_y_continuous(labels = scales::comma_format(big.mark = ".", decimal.mark = ","))+
   scale_fill_manual(values=c("#66CDAA", "#0644B3"))+
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+
@@ -134,16 +136,18 @@ tuition_cost%>%
   ggplot()+aes (x = state_code, y = in_state_total) +
    stat_summary(fun = mean, color ="#66CDAA") +
    geom_line(position="identity")+
-  labs(x="State", y="Costs", title= "Mean of study fees in different states of the US \n for a 2-year study")+
+  labs(x="State", y="Costs in USD", title= "Mean of study fees in different states of the US \nfor a 2-year study")+
    scale_y_continuous(labels = scales::comma_format(big.mark = ".", decimal.mark = ","))+
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+
   guides(fill=guide_legend(title=NULL))
-
+```
+The circumstances within a four-year study are similar, with the exception that costs are generally increasing. Public institutions now often exceed the 20,000USD mark and many private institutions reach costs of around 70,000USD. The mean now usually fluctuates between 20,000USD and 50,000USD. Here, too, there are many outliers, especially in the direction of higher costs. Overall, the costs are hardly manageable, since the average annual income of Americans is 58,700USD. For people who earn less than that, it is almost impossible to cover these costs. 
+```{r setup49, echo=FALSE, cache=FALSE}
 #4 Jahre
 tuition_cost%>%
     filter(str_detect(degree_length, "4 Year"), type != "For Profit")%>%
  ggplot()+aes(state_code,in_state_total, fill=type) + geom_col(position="identity")+
-  labs(x="State", y="Costs", title= "Study fees in different US states for a 4-year study")+
+  labs(x="State", y="Costs in USD", title= "Study fees in different US states for a 4-year study")+
    scale_y_continuous(labels = scales::comma_format(big.mark = ".", decimal.mark = ","))+
   scale_fill_manual(values=c("#66CDAA", "#0644B3"))+
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+
@@ -155,13 +159,15 @@ tuition_cost%>%
   ggplot()+aes (x = state_code, y = in_state_total) +
    stat_summary(fun = mean, color ="#66CDAA") +
    geom_line(position="identity")+
-  labs(x="State", y="Costs", title= "Mean of study fees in different states of the US \n for a 4-year study")+
+  labs(x="State", y="Costs in USD", title= "Mean of study fees in different states of the US \n for a 4-year study")+
    scale_y_continuous(labels = scales::comma_format(big.mark = ".", decimal.mark = ","))+
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+
   guides(fill=guide_legend(title=NULL))
 
 
 ```
+All in all, it can be seen that the study costs are not only very high in general, but are also subject to extreme fluctuations that make it difficult to keep an overview. Furthermore, these fluctuations (especially for the 4-year study) raise the question with which underlying reasons they are justified and which advantages of a particularly expensive institution are withheld from those who cannot afford it.
+
 Although a general reduction in costs or increased funding by colleges and universities or by the state are urgently needed, exactly the opposite is happening. The cost of studying in America has risen significantly in recent decades - both in private and public institutions.
 ```{r setup55, echo=FALSE, cache=FALSE}
 #Visualisierung der Kosten über die Jahre von verschiedenen Typen von Institutionen
@@ -171,7 +177,7 @@ historical_tuition %>%
   aes(year, tuition_cost, colour=type, group=type) +
   stat_summary(fun = mean)+
   #geom_point()+
-  labs(x="Year", y="Study fees", 
+  labs(x="Year", y="Costs in USD", 
        title= "Increase of study fees between 1985 and 2017") + 
   scale_y_continuous(labels = scales::comma_format(big.mark = ".", decimal.mark = ","))+
  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+
@@ -198,6 +204,7 @@ Education should therefore be free or inexpensive and accessible to everyone in 
 achievement_education_and_science %>% 
   ggplot + aes(year, fill = category) + 
   geom_area(stat = "bin", alpha = 0.9) + 
+  theme(legend.title=element_blank())+
   labs(x="Year", y="Achievements", title= "Achievements of African Americans in the last centuries")
 ```
 
@@ -234,4 +241,7 @@ In the following there is a list of literature that was used for specific parts 
 
 - Möller Digital (2020): Amerikanisches Schulsystem. Was sind die Besonderheiten im Schulsystem der USA? Here's the [URL](https://www.usa-info.net/usa-wiki/amerikanisches-schulsystem/#amerikanisches-schulsystem-8211-die-verschiedenen-schulformen-der-usa) (last access: 12.08.2020)
 
+- https://www.laenderdaten.info/durchschnittseinkommen.php (last access: 20.08.2020)
+
 - Paulsen, Michael B.; St. John, Edward P. (2015): Social Class and College Costs. Examining the Financial Nexus Between College Choice and Persistence. Here's the [URL](https://www.researchgate.net/profile/Edward_St_John/publication/200031231_Social_Class_and_College_Costs_Examining_the_Financial_Nexus_Between_College_Choice_and_Persistence/links/5564e38608ae06101abdfec3.pdf) (last access: 15.08.2020)
+

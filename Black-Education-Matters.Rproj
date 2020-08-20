@@ -7,7 +7,6 @@ output:
 ---
 
 
-
 ```{r setup, echo=FALSE, cache=FALSE}
 library(knitr)
 library(rmdformats)
@@ -236,4 +235,3 @@ In the following there is a list of literature that was used for specific parts 
 - Möller Digital (2020): Amerikanisches Schulsystem. Was sind die Besonderheiten im Schulsystem der USA? Here's the [URL](https://www.usa-info.net/usa-wiki/amerikanisches-schulsystem/#amerikanisches-schulsystem-8211-die-verschiedenen-schulformen-der-usa) (last access: 12.08.2020)
 
 - Paulsen, Michael B.; St. John, Edward P. (2015): Social Class and College Costs. Examining the Financial Nexus Between College Choice and Persistence. Here's the [URL](https://www.researchgate.net/profile/Edward_St_John/publication/200031231_Social_Class_and_College_Costs_Examining_the_Financial_Nexus_Between_College_Choice_and_Persistence/links/5564e38608ae06101abdfec3.pdf) (last access: 15.08.2020)
-

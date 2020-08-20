@@ -1,5 +1,5 @@
 ---
-title: "Black Education Matters"
+title: "Black Education Matters_final"
 date: "`r Sys.Date()`"
 output:
   rmdformats::material:

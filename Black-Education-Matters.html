@@ -10,7 +10,7 @@
 
 
 
-<title>Black Education Matters_final</title>
+<title>Black Education Matters</title>
 <!-- Material Design fonts -->
 <style type="text/css; charset=utf-8">@font-face {
 font-family: 'Roboto';
@@ -925,8 +925,8 @@ $(document).ready(function () {
         <div class="row">
             <div class="col-xs-3">
         <div id="header">
-    <h1 class="title">Black Education Matters_final</h1>
-                <h4 class="date"><code>r Sys.Date()</code></h4>
+    <h1 class="title">Black Education Matters</h1>
+                <h4 class="date">by Gapinaya Ganeshabalan and Lena Pohlmann</h4>
         </div>
     </div>
 </div>
@@ -941,8 +941,8 @@ $(document).ready(function () {
         <ul>
         <li><a href="#black-education-matters">Black Education Matters</a></li>
         <li><a href="#diversity-in-colleges-and-schools">Diversity in colleges and schools</a></li>
-        <li><a href="#collegecosts-in-america">Collegecosts in America</a></li>
-        <li><a href="#listing-of-sources-and-literature">Listing of sources and literature</a></li>
+        <li><a href="#costs-of-studying-in-america">Costs of studying in America</a></li>
+        <li><a href="#sources-and-literature">Sources and literature</a></li>
         </ul>
         </div>
         
@@ -973,7 +973,7 @@ achievement_education_and_science &lt;- readr::read_csv(&#39;https://raw.githubu
 </div>
 <div id="black-education-matters" class="section level1">
 <h1>Black Education Matters</h1>
-<p>Racism against black people, their oppression and discrimination have been a present and much discussed topic for many decades. Until 1865, black people were enslaved in America. But even after that they could not benefit from the same rights as white people. Initially there were strict racial segregation, separate toilets for black and white people, separate schools and many other restrictions and differences. Arriving in 2020, people are more enlightened, free and have the same rights no matter where they come from - so far in theory. But the year 2020 in particular has once again stirred up the issue of racism and made it clear that it is not over yet. Racism still exists nowadays and accompanies us every day. The case of <a href="https://de.wikipedia.org/wiki/Todesfall_George_Floyd">George Floyd</a>, an African-American who was murdered by the police after lying helplessly on the ground crying, triggered the <a href="https://blacklivesmatter.com">“Black Lives Matter”</a> movement (BLM). BLM educates about racism and wants to stop it.</p>
+<p>Racism against black people, their oppression and discrimination have been a present and much discussed topic for many decades. Until 1865, black people were enslaved in America. But even after that they could not benefit from the same rights as white people. Initially there were strict racial segregation, separate toilets for black and white people, separate schools and many other restrictions and differences. Arriving in 2020, people are more enlightened, free and have the same rights no matter where they come from - so far in theory. But the year 2020 in particular has once again stirred up the issue of racism and made it clear that it is not over yet. Racism still exists nowadays and accompanies us every day. The case of <a href="https://en.wikipedia.org/wiki/Killing_of_George_Floyd">George Floyd</a>, an African-American who was killed by the police after lying helplessly on the ground crying, triggered the <a href="https://blacklivesmatter.com">“Black Lives Matter”</a> movement (BLM). BLM educates about racism and wants to stop it.</p>
 <p><code>{r setup8,echo=FALSE,cache=FALSE} library(cowplot) library(magick) logo_raw &lt;- image_read(&quot;poster.png&quot;)  logo_raw</code></p>
 </div>
 <div id="diversity-in-colleges-and-schools" class="section level1">
@@ -996,7 +996,7 @@ diversity_school %&gt;%
   geom_bar() + 
  
   facet_wrap(SCHOOL_YEAR ~ .) + 
-  labs(y=&quot;Amount of schools&quot;,title= &quot;Diversity in schools&quot;) + 
+  labs(y=&quot;Amount of schools&quot;,title= &quot;Diversity in schools in the US states&quot;) + 
   theme(axis.title.x=element_blank()) + 
   theme(legend.title=element_blank())+
   theme(axis.ticks.x=element_blank())+
@@ -1007,16 +1007,16 @@ diversity_school %&gt;%
 </code></pre>
 <p>But what is the origin of these differences in diversity in schools and higher education institutions? One problem lies in the selective recruitment procedures of colleges and universities - origin and skin colour still play a role in many places. But high tuition costs can also lead to the exclusion of certain groups and thus to less diversity. We would like to examine this aspect in more detail in the following.</p>
 </div>
-<div id="collegecosts-in-america" class="section level1">
-<h1>Collegecosts in America</h1>
+<div id="costs-of-studying-in-america" class="section level1">
+<h1>Costs of studying in America</h1>
 <p>In America it is common for students to have to pay large amounts of money to attend college or university. This applies not only to private institutions, but also to public ones. The following two diagrams show the total costs for colleges and universities, divided into public and private in the different states of the USA. The first diagram shows the costs for a 2-year study, the second diagram shows the costs for a 4-year study. You can also see how much the cost of studying varies within and between the different states and where the average cost lies.</p>
-<p>Within a two-year study at a public institution, with one exception, the study costs are less than 20,000USD. The situation is somewhat different for private institutions - here the costs can reach almost 70,000USD.</p>
-<p>In the second diagram, clear fluctuations can also be seen within states. Although the average value is usually still below 20,000USD, there are many outliers that cost at least twice as much as the mean.</p>
+<p>Within a two-year study at a public institution, with one exception, the study costs are less than 20,000 USD. The situation is somewhat different for private institutions - here the costs can reach almost 70,000 USD.</p>
+<p>In the second diagram, clear fluctuations can also be seen within states. Although the average value is usually still below 20,000 USD, there are many outliers that cost at least twice as much as the mean.</p>
 <p>```{r setup4, echo=FALSE, cache=FALSE}</p>
 <p>#Kosten je nach Länge des Studiums</p>
-<p>#2 Jahre tuition_cost%&gt;% filter(str_detect(degree_length, “2 Year”), type != “For Profit”)%&gt;% ggplot()+aes(x=state_code,y=in_state_total,fill=type) + geom_col(position=“identity”)+ labs(x=“State”, y=“Costs in USD”, title= “Study fees in different US states for a 2-year study”)+ scale_y_continuous(labels = scales::comma_format(big.mark = “.”, decimal.mark = “,”))+ scale_fill_manual(values=c(“#66CDAA”, “#0644B3”))+ theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+ guides(fill=guide_legend(title=NULL))</p>
-<p>#mean (Mittelwerte sind die grünen Punkte) tuition_cost%&gt;% filter(str_detect(degree_length, “2 Year”), type != “For Profit”)%&gt;% ggplot()+aes (x = state_code, y = in_state_total) + stat_summary(fun = mean, color =“#66CDAA”) + geom_line(position=“identity”)+ labs(x=“State”, y=“Costs in USD”, title= “Mean of study fees in different states of the US a 2-year study”)+ scale_y_continuous(labels = scales::comma_format(big.mark = “.”, decimal.mark = “,”))+ theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+ guides(fill=guide_legend(title=NULL))</p>
-<pre><code>The circumstances within a four-year study are similar, with the exception that costs are generally increasing. Public institutions now often exceed the 20,000USD mark and many private institutions reach costs of around 70,000USD. The mean now usually fluctuates between 20,000USD and 50,000USD. Here, too, there are many outliers, especially in the direction of higher costs. Overall, the costs are hardly manageable, since the average annual income of Americans is 58,700USD. For people who earn less than that, it is almost impossible to cover these costs. 
+<p>#2 Jahre tuition_cost%&gt;% filter(str_detect(degree_length, “2 Year”), type != “For Profit”)%&gt;% ggplot()+aes(x=state_code,y=in_state_total,fill=type) + geom_col(position=“identity”)+ labs(x=“State”, y=“Costs in USD”, title= “Study fees in different US states for a 2-year study”)+ scale_y_continuous(labels = scales::comma_format(big.mark = “.”, decimal.mark = “,”))+ scale_fill_manual(values=c(“#66CDAA”, “#0644B3”))+ theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+ theme(text=element_text(size=8))+ guides(fill=guide_legend(title=NULL))</p>
+<p>#mean (Mittelwerte sind die grünen Punkte) tuition_cost%&gt;% filter(str_detect(degree_length, “2 Year”), type != “For Profit”)%&gt;% ggplot()+aes (x = state_code, y = in_state_total) + stat_summary(fun = mean, color =“#66CDAA”) + geom_line(position=“identity”)+ labs(x=“State”, y=“Costs in USD”, title= “Mean of study fees in different US states for a 2-year study”)+ scale_y_continuous(labels = scales::comma_format(big.mark = “.”, decimal.mark = “,”))+ theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+ theme(text=element_text(size=8))+ guides(fill=guide_legend(title=NULL))</p>
+<pre><code>The circumstances within a four-year study are similar, with the exception that costs are generally increasing. Public institutions now often exceed the 20,000 USD mark and many private institutions reach costs of around 70,000 USD. The mean now usually fluctuates between 20,000 USD and 50,000 USD. Here, too, there are many outliers, especially in the direction of higher costs. Overall, the costs are hardly manageable, since the average annual income of Americans is 58,700 USD. For people who earn less than that, it is almost impossible to cover these costs. 
 ```{r setup49, echo=FALSE, cache=FALSE}
 #4 Jahre
 tuition_cost%&gt;%
@@ -1026,6 +1026,7 @@ tuition_cost%&gt;%
    scale_y_continuous(labels = scales::comma_format(big.mark = &quot;.&quot;, decimal.mark = &quot;,&quot;))+
   scale_fill_manual(values=c(&quot;#66CDAA&quot;, &quot;#0644B3&quot;))+
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+
+  theme(text=element_text(size=8))+
   guides(fill=guide_legend(title=NULL))
 
 #mean (Mittelwerte sind die grünen Punkte)
@@ -1034,9 +1035,10 @@ tuition_cost%&gt;%
   ggplot()+aes (x = state_code, y = in_state_total) +
    stat_summary(fun = mean, color =&quot;#66CDAA&quot;) +
    geom_line(position=&quot;identity&quot;)+
-  labs(x=&quot;State&quot;, y=&quot;Costs in USD&quot;, title= &quot;Mean of study fees in different states of the US \n for a 4-year study&quot;)+
+  labs(x=&quot;State&quot;, y=&quot;Costs in USD&quot;, title= &quot;Mean of study fees in different US states for a 4-year study&quot;)+
    scale_y_continuous(labels = scales::comma_format(big.mark = &quot;.&quot;, decimal.mark = &quot;,&quot;))+
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+
+  theme(text=element_text(size=8))+
   guides(fill=guide_legend(title=NULL))
 
 </code></pre>
@@ -1060,8 +1062,8 @@ achievement_education_and_science %&gt;%
 <p>It becomes strikingly clear: “Black Education Matters” - for the whole society!</p>
 <p><code>{r setup11,echo=FALSE,cache=FALSE} library(cowplot) library(magick) logo_raw2 &lt;- image_read(&quot;ach.png&quot;)  logo_raw2</code></p>
 </div>
-<div id="listing-of-sources-and-literature" class="section level1">
-<h1>Listing of sources and literature</h1>
+<div id="sources-and-literature" class="section level1">
+<h1>Sources and literature</h1>
 <div id="dataset" class="section level4">
 <h4>Dataset</h4>
 <p>The data set was provided via TidyTuesday and contains data describing diversity, costs, and so on in schools, colleges and universities in the USA.</p>
@@ -1079,9 +1081,10 @@ achievement_education_and_science %&gt;%
 <ul>
 <li><p>Allen, Drew; Wolniak, Gregory C. (2015): Exploring the Effects of Tuition Increases on Racial/Ethnic Diversity at Public Colleges and Universities. Here’s the <a href="http://s18.middlebury.edu/ECON0210B/STUDENTS/Group%20Research%20Proposal/Garrett,%20Greene/PS/PS15/Exploring%20the%20Effects%20of%20Tuition%20Increases%20on%20Racial-Ethnic%20Diversity%20at.pdf">URL</a> (last access: 13.08.2020)</p></li>
 <li><p>Möller Digital (2020): Amerikanisches Schulsystem. Was sind die Besonderheiten im Schulsystem der USA? Here’s the <a href="https://www.usa-info.net/usa-wiki/amerikanisches-schulsystem/#amerikanisches-schulsystem-8211-die-verschiedenen-schulformen-der-usa">URL</a> (last access: 12.08.2020)</p></li>
-<li><p><a href="https://www.laenderdaten.info/durchschnittseinkommen.php" class="uri">https://www.laenderdaten.info/durchschnittseinkommen.php</a> (last access: 20.08.2020)</p></li>
+<li><p>laenderdaten.info (2020): Durchschnittliches Einkommen weltweit. Here’s the <a href="https://www.laenderdaten.info/durchschnittseinkommen.php">URL</a> (last access: 20.08.2020)</p></li>
 <li><p>Paulsen, Michael B.; St. John, Edward P. (2015): Social Class and College Costs. Examining the Financial Nexus Between College Choice and Persistence. Here’s the <a href="https://www.researchgate.net/profile/Edward_St_John/publication/200031231_Social_Class_and_College_Costs_Examining_the_Financial_Nexus_Between_College_Choice_and_Persistence/links/5564e38608ae06101abdfec3.pdf">URL</a> (last access: 15.08.2020)</p></li>
 </ul>
+<p>The images used on the website were created by ourselves via canva.com and PowerPoint.</p>
 </div>
 </div>
 

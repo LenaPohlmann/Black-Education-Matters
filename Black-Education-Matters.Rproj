@@ -1,6 +1,6 @@
 ---
-title: "Black Education Matters_final"
-date: "`r Sys.Date()`"
+title: "Black Education Matters"
+date: "by Gapinaya Ganeshabalan and Lena Pohlmann"
 output:
   rmdformats::material:
     highlight: kate
@@ -37,7 +37,7 @@ achievement_education_and_science <- readr::read_csv('https://raw.githubusercont
 
 
 # Black Education Matters
-Racism against black people, their oppression and discrimination have been a present and much discussed topic for many decades. Until 1865, black people were enslaved in America. But even after that they could not benefit from the same rights as white people. Initially there were strict racial segregation, separate toilets for black and white people, separate schools and many other restrictions and differences. Arriving in 2020, people are more enlightened, free and have the same rights no matter where they come from - so far in theory. But the year 2020 in particular has once again stirred up the issue of racism and made it clear that it is not over yet. Racism still exists nowadays and accompanies us every day. The case of [George Floyd](https://de.wikipedia.org/wiki/Todesfall_George_Floyd), an African-American who was murdered by the police after lying helplessly on the ground crying, triggered the ["Black Lives Matter"](https://blacklivesmatter.com) movement (BLM). BLM educates about racism and wants to stop it.
+Racism against black people, their oppression and discrimination have been a present and much discussed topic for many decades. Until 1865, black people were enslaved in America. But even after that they could not benefit from the same rights as white people. Initially there were strict racial segregation, separate toilets for black and white people, separate schools and many other restrictions and differences. Arriving in 2020, people are more enlightened, free and have the same rights no matter where they come from - so far in theory. But the year 2020 in particular has once again stirred up the issue of racism and made it clear that it is not over yet. Racism still exists nowadays and accompanies us every day. The case of [George Floyd](https://en.wikipedia.org/wiki/Killing_of_George_Floyd), an African-American who was killed by the police after lying helplessly on the ground crying, triggered the ["Black Lives Matter"](https://blacklivesmatter.com) movement (BLM). BLM educates about racism and wants to stop it.
 
 ```{r setup8,echo=FALSE,cache=FALSE}
 library(cowplot)
@@ -91,7 +91,7 @@ diversity_school %>%
   geom_bar() + 
  
   facet_wrap(SCHOOL_YEAR ~ .) + 
-  labs(y="Amount of schools",title= "Diversity in schools") + 
+  labs(y="Amount of schools",title= "Diversity in schools in the US states") + 
   theme(axis.title.x=element_blank()) + 
   theme(legend.title=element_blank())+
   theme(axis.ticks.x=element_blank())+
@@ -105,14 +105,14 @@ diversity_school %>%
 But what is the origin of these differences in diversity in schools and higher education institutions? One problem lies in the selective recruitment procedures of colleges and universities - origin and skin colour still play a role in many places. But high tuition costs can also lead to the exclusion of certain groups and thus to less diversity. We would like to examine this aspect in more detail in the following.
 
 
-# Collegecosts in America
+# Costs of studying in America
 
 In America it is common for students to have to pay large amounts of money to attend college or university. This applies not only to private institutions, but also to public ones. The following two diagrams show the total costs for colleges and universities, divided into public and private in the different states of the USA. The first diagram shows the costs for a 2-year study, the second diagram shows the costs for a 4-year study. 
 You can also see how much the cost of studying varies within and between the different states and where the average cost lies.  
 
-Within a two-year study at a public institution, with one exception, the study costs are less than 20,000USD. The situation is somewhat different for private institutions - here the costs can reach almost 70,000USD.
+Within a two-year study at a public institution, with one exception, the study costs are less than 20,000 USD. The situation is somewhat different for private institutions - here the costs can reach almost 70,000 USD.
 
-In the second diagram, clear fluctuations can also be seen within states. Although the average value is usually still below 20,000USD, there are many outliers that cost at least twice as much as the mean.
+In the second diagram, clear fluctuations can also be seen within states. Although the average value is usually still below 20,000 USD, there are many outliers that cost at least twice as much as the mean.
 
 
 
@@ -128,6 +128,7 @@ tuition_cost%>%
    scale_y_continuous(labels = scales::comma_format(big.mark = ".", decimal.mark = ","))+
   scale_fill_manual(values=c("#66CDAA", "#0644B3"))+
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+
+  theme(text=element_text(size=8))+
   guides(fill=guide_legend(title=NULL))
 
 #mean (Mittelwerte sind die grünen Punkte)
@@ -136,12 +137,13 @@ tuition_cost%>%
   ggplot()+aes (x = state_code, y = in_state_total) +
    stat_summary(fun = mean, color ="#66CDAA") +
    geom_line(position="identity")+
-  labs(x="State", y="Costs in USD", title= "Mean of study fees in different states of the US \nfor a 2-year study")+
+  labs(x="State", y="Costs in USD", title= "Mean of study fees in different US states for a 2-year study")+
    scale_y_continuous(labels = scales::comma_format(big.mark = ".", decimal.mark = ","))+
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+
+  theme(text=element_text(size=8))+
   guides(fill=guide_legend(title=NULL))
 ```
-The circumstances within a four-year study are similar, with the exception that costs are generally increasing. Public institutions now often exceed the 20,000USD mark and many private institutions reach costs of around 70,000USD. The mean now usually fluctuates between 20,000USD and 50,000USD. Here, too, there are many outliers, especially in the direction of higher costs. Overall, the costs are hardly manageable, since the average annual income of Americans is 58,700USD. For people who earn less than that, it is almost impossible to cover these costs. 
+The circumstances within a four-year study are similar, with the exception that costs are generally increasing. Public institutions now often exceed the 20,000 USD mark and many private institutions reach costs of around 70,000 USD. The mean now usually fluctuates between 20,000 USD and 50,000 USD. Here, too, there are many outliers, especially in the direction of higher costs. Overall, the costs are hardly manageable, since the average annual income of Americans is 58,700 USD. For people who earn less than that, it is almost impossible to cover these costs. 
 ```{r setup49, echo=FALSE, cache=FALSE}
 #4 Jahre
 tuition_cost%>%
@@ -151,6 +153,7 @@ tuition_cost%>%
    scale_y_continuous(labels = scales::comma_format(big.mark = ".", decimal.mark = ","))+
   scale_fill_manual(values=c("#66CDAA", "#0644B3"))+
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+
+  theme(text=element_text(size=8))+
   guides(fill=guide_legend(title=NULL))
 
 #mean (Mittelwerte sind die grünen Punkte)
@@ -159,9 +162,10 @@ tuition_cost%>%
   ggplot()+aes (x = state_code, y = in_state_total) +
    stat_summary(fun = mean, color ="#66CDAA") +
    geom_line(position="identity")+
-  labs(x="State", y="Costs in USD", title= "Mean of study fees in different states of the US \n for a 4-year study")+
+  labs(x="State", y="Costs in USD", title= "Mean of study fees in different US states for a 4-year study")+
    scale_y_continuous(labels = scales::comma_format(big.mark = ".", decimal.mark = ","))+
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+
+  theme(text=element_text(size=8))+
   guides(fill=guide_legend(title=NULL))
 
 
@@ -221,7 +225,7 @@ logo_raw2 <- image_read("ach.png")
 logo_raw2
 ```
 
-# Listing of sources and literature
+# Sources and literature
 
 #### Dataset
 
@@ -241,7 +245,11 @@ In the following there is a list of literature that was used for specific parts 
 
 - Möller Digital (2020): Amerikanisches Schulsystem. Was sind die Besonderheiten im Schulsystem der USA? Here's the [URL](https://www.usa-info.net/usa-wiki/amerikanisches-schulsystem/#amerikanisches-schulsystem-8211-die-verschiedenen-schulformen-der-usa) (last access: 12.08.2020)
 
-- https://www.laenderdaten.info/durchschnittseinkommen.php (last access: 20.08.2020)
+- laenderdaten.info (2020): Durchschnittliches Einkommen weltweit. Here's the [URL](https://www.laenderdaten.info/durchschnittseinkommen.php) (last access: 20.08.2020)
 
 - Paulsen, Michael B.; St. John, Edward P. (2015): Social Class and College Costs. Examining the Financial Nexus Between College Choice and Persistence. Here's the [URL](https://www.researchgate.net/profile/Edward_St_John/publication/200031231_Social_Class_and_College_Costs_Examining_the_Financial_Nexus_Between_College_Choice_and_Persistence/links/5564e38608ae06101abdfec3.pdf) (last access: 15.08.2020)
+
+The images used on the website were created by ourselves via canva.com and PowerPoint.
+
+
 
